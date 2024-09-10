@@ -1,4 +1,4 @@
-## Desafio-DIO| Criando um Sitema Bancário
+## Desafio-DIO| Criando um sistema bancário
 
 # OBJETIVO GERAL
 Criar um sistemas bancário com as operaçoes: Sacar, Depositar e visualizar Extrato.
