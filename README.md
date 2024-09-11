@@ -1,7 +1,7 @@
 ## Desafio-DIO| Criando um sistema bancário
 
 # OBJETIVO GERAL
-Criar um sistemas bancário com as operações: Sacar, Depositar e visualizar Extrato.
+Criar um sistemas bancário na linguagem Python com as operações: Sacar, Depositar e visualizar Extrato.
 
 ## 📖 RESUMO
 - Consiste em criar um sistema bancário simples na liguagem Python com 3 operações: Depósito, saque e extrato. 
