@@ -167,7 +167,7 @@ def filtrar_cliente(cpf, clientes):
 
 def recuperar_conta_cliente(cliente):
     if not cliente.contas:
-        print("\n@@@ Cliente não possui conta! @@@")
+        print(" Cliente não possui conta! Crie uma nova conta para realizar operações.")
         return
 
     # FIXME: não permite cliente escolher a conta
@@ -178,7 +178,7 @@ def depositar(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n@@@ Cliente não encontrado! @@@")
+        print("Cliente não encontrado! Por favor, cadastre o cliente.")
         return
 
     valor = float(input("Informe o valor do depósito: "))
@@ -195,7 +195,7 @@ def sacar(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n@@@ Cliente não encontrado! @@@")
+        print("Cliente não encontrado! Por favor, cadastre o cliente.")
         return
 
     valor = float(input("Informe o valor do saque: "))
@@ -213,7 +213,7 @@ def exibir_extrato(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n@@@ Cliente não encontrado! @@@")
+        print(" Cliente não encontrado! Por favor, cadastre o cliente.")
         return
 
     conta = recuperar_conta_cliente(cliente)
@@ -240,7 +240,7 @@ def criar_cliente(clientes):
     cliente = filtrar_cliente(cpf, clientes)
 
     if cliente:
-        print("\n@@@ Já existe cliente com esse CPF! @@@")
+        print(" Já existe cliente com esse CPF! Por favor, informe outro CPF.")
         return
 
     nome = input("Informe o nome completo: ")
@@ -251,7 +251,7 @@ def criar_cliente(clientes):
 
     clientes.append(cliente)
 
-    print("\n=== Cliente criado com sucesso! ===")
+    print("Cliente criado com sucesso! ")
 
 
 def criar_conta(numero_conta, clientes, contas):
@@ -259,14 +259,14 @@ def criar_conta(numero_conta, clientes, contas):
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print("\n@@@ Cliente não encontrado, fluxo de criação de conta encerrado! @@@")
+        print("Cliente não encontrado, fluxo de criação de conta encerrado! Por favor, cadastre o cliente.")
         return
 
     conta = ContaCorrente.nova_conta(cliente=cliente, numero=numero_conta)
     contas.append(conta)
     cliente.contas.append(conta)
 
-    print("\n=== Conta criada com sucesso! ===")
+    print(" Conta criada com sucesso!")
 
 
 def listar_contas(contas):
@@ -305,6 +305,6 @@ def main():
             break
 
         else:
-            print("\n@@@ Operação inválida, por favor selecione novamente a operação desejada. @@@")
+            print(" Operação inválida, por favor selecione novamente a operação desejada.")
 
     main()
