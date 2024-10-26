@@ -146,18 +146,23 @@ class Deposito(Transacao):
         if sucesso_transacao:
             conta.historico.adicionar_transacao(self)
 
+import textwrap
+
 def menu():
-    menu = """\n
+    print("\nBem-vindo ao Banco Python!")
+    menu_text = """\n
     ================ MENU ================
     [1]\tDepositar
     [2]\tSacar
     [3]\tExtrato
-    [5]\tNova conta
+    [4]\tCriar usuário
+    [5]\tCriar conta
     [6]\tListar contas
-    [7]\tNovo usuário
-    [8]\tSair
+    [7]\tSair
+    ======================================
     => """
-    return input(textwrap.dedent(menu))
+    return input(textwrap.dedent(menu_text))
+
 
 
 def filtrar_cliente(cpf, clientes):
@@ -198,41 +203,73 @@ def sacar(clientes):
         print("Cliente não encontrado! Por favor, cadastre o cliente.")
         return
 
-    valor = float(input("Informe o valor do saque: "))
-    transacao = Saque(valor)
-
     conta = recuperar_conta_cliente(cliente)
     if not conta:
+        print("Conta não encontrada para o cliente.")
         return
 
-    cliente.realizar_transacao(conta, transacao)
+    # Filtrar transações de saque realizadas no dia atual
+    hoje = datetime.now().strftime("%d/%m/%Y")
+    saques_hoje = [transacao for transacao in conta.historico.transacoes
+                   if transacao['tipo'] == "Saque" and transacao['data'].startswith(hoje)]
 
+    if len(saques_hoje) >= 3:
+        print("Limite de 3 saques diários atingido. Tente novamente amanhã.")
+        return
+
+    try:
+        valor = float(input("Informe o valor do saque: "))
+        
+        if valor <= 0:
+            print("Valor inválido! O valor do saque deve ser maior que zero.")
+            return
+        
+        if valor > 500:
+            print("Valor inválido! O valor do saque não pode exceder R$ 500.")
+            return
+
+        transacao = Saque(valor)
+        cliente.realizar_transacao(conta, transacao)
+        
+        print(f"Saque de R$ {valor:.2f} realizado com sucesso na conta de {cliente.nome}.")
+        
+    except ValueError:
+        print("Valor inválido! Por favor, insira um número válido para o saque.")
+
+
+
+from datetime import datetime
 
 def exibir_extrato(clientes):
     cpf = input("Informe o CPF do cliente: ")
     cliente = filtrar_cliente(cpf, clientes)
 
     if not cliente:
-        print(" Cliente não encontrado! Por favor, cadastre o cliente.")
+        print("Cliente não encontrado! Por favor, cadastre o cliente.")
         return
 
     conta = recuperar_conta_cliente(cliente)
     if not conta:
+        print("Conta não encontrada para o cliente.")
         return
 
     print("\n================ EXTRATO ================")
+    print(f"Data e hora do extrato: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
     transacoes = conta.historico.transacoes
 
-    extrato = ""
     if not transacoes:
-        extrato = "Não foram realizadas movimentações."
+        print("Não foram realizadas movimentações.")
     else:
         for transacao in transacoes:
-            extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}"
+            # Adicionando a data e hora da transação
+            data_transacao = transacao['data']
+            tipo_transacao = transacao['tipo']
+            valor_transacao = transacao['valor']
+            print(f"{data_transacao} - {tipo_transacao}:\n\tR$ {valor_transacao:.2f}")
 
-    print(extrato)
-    print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
-    print("==========================================")
+            print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
+            print("==========================================")
+
 
 
 def criar_cliente(clientes):
@@ -275,6 +312,8 @@ def listar_contas(contas):
         print(textwrap.dedent(str(conta)))
 
 
+import sys
+
 def main():
     clientes = []
     contas = []
@@ -302,9 +341,11 @@ def main():
             listar_contas(contas)
 
         elif opcao == "7":
-            break
+            print("Obrigado por utilizar o Banco Python!")
+            sys.exit()  # Sair do programa
 
         else:
-            print(" Operação inválida, por favor selecione novamente a operação desejada.")
+            print("Opção inválida. Tente novamente.")
 
-    main()
+# Iniciar o programa chamando a função main
+main()
