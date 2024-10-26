@@ -20,9 +20,11 @@ Criar um sistemas bancário na linguagem Python com as operações: Sacar, Depos
 
  ## Sistema Bancário Python
 #Descrição
+
 Este projeto é um sistema bancário simples desenvolvido em Python, utilizando programação orientada a objetos (POO). O sistema permite o gerenciamento de clientes, contas, depósitos, saques e extratos, implementando limites diários de transações e saques.
 
 #Funcionalidades
+
 Gerenciamento de Clientes: Cadastro e consulta de clientes pelo CPF.
 Contas Bancárias: Criação de contas para clientes.
 Transações:
@@ -30,7 +32,9 @@ Depositar: Adicione fundos à conta.
 Sacar: Realize saques com limites de R$ 500 e 3 saques diários.
 Extrato: Consulte o histórico de transações da conta.
 Limites: Restrição de 10 transações por dia (incluindo saques e depósitos).
+
 #Requisitos
+
 Python 3.x
 Biblioteca padrão do Python
 ##Instalação
@@ -46,13 +50,16 @@ git clone https://github.com/YndiGUID/Desafio-DIO-Sistema_bancario
 bash
 Copiar código
 cd sistema-bancario-python
+
 #Execute o programa:
 
 bash
 Copiar código
 python main.py
+
 #Uso
-Após executar o programa, você verá um menu interativo com opções para realizar as seguintes ações:
+ 
+ Após executar o programa, você verá um menu interativo com opções para realizar as seguintes ações:
 
 Depositar
 Sacar
@@ -63,8 +70,10 @@ Listar contas
 Sair
 Basta digitar o número da opção desejada e seguir as instruções exibidas na tela.
 
+
 #Estrutura do Código
-O sistema é organizado em várias classes principais:
+ 
+ O sistema é organizado em várias classes principais:
 
 Cliente: Classe base que gerencia os dados do cliente e suas contas.
 Conta: Classe base para contas bancárias, que gerencia o saldo e transações.
@@ -75,6 +84,7 @@ Transacao: Classe abstrata para transações, como Saque e Deposito.
 Contribuições são bem-vindas! Se você gostaria de melhorar este projeto, sinta-se à vontade para fazer um fork e enviar um pull request.
 
 #Licença
+
 Este projeto está licenciado sob a MIT License.
 
 Contato
