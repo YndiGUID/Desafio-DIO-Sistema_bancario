@@ -18,7 +18,7 @@ Criar um sistemas bancário na linguagem Python com as operações: Sacar, Depos
 - no final dele deve ser exibido o saldo atual da conta.
 - Se o extrato estiver em branco aparece a mensagem: "Não foram realizadas movimentaçoes"!.
 
-#### Sistema Bancário Python
+ ## Sistema Bancário Python
 #Descrição
 Este projeto é um sistema bancário simples desenvolvido em Python, utilizando programação orientada a objetos (POO). O sistema permite o gerenciamento de clientes, contas, depósitos, saques e extratos, implementando limites diários de transações e saques.
 
@@ -40,7 +40,7 @@ Para instalar e executar este projeto em sua máquina, siga os passos abaixo:
 
 bash
 Copiar código
-git clone https://github.com/seu_usuario/sistema-bancario-python.git
+git clone https://github.com/YndiGUID/Desafio-DIO-Sistema_bancario
 #Acesse o diretório do projeto:
 
 bash
